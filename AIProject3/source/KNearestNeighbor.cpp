@@ -85,7 +85,7 @@ namespace ml
 				// Sum up the conditional probability differences for the attribute and the training value
 				for (ClassIndex classIndex = 0; classIndex < numClasses; ++classIndex)
 				{
-					result[i] += (cpCache[attribValue * numClasses + classIndex] - cpCache[trainingValueIndex * numClasses + classIndex]);
+					result[i] += std::abs(cpCache[attribValue * numClasses + classIndex] - cpCache[trainingValueIndex * numClasses + classIndex]);
 				}
 
 				// Set it to the power of 'q'

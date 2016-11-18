@@ -5,5 +5,7 @@
 
 namespace ml
 {
-	DataSet load_house_votes_data_set();
+	DataSet load_house_votes_data();
+
+	DataSet load_breast_cancer_data();
 }

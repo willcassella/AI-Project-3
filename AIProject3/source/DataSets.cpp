@@ -7,7 +7,7 @@
 
 namespace ml
 {
-	void load_data_set(DataSet& dataset, const char* path)
+	void load_data_set(DataSet& dataset, const char* path, bool classFirst)
 	{
 		std::ifstream file{ path, std::ios::in };
 
@@ -21,17 +21,27 @@ namespace ml
 		{
 			lineStream << line;
 			std::string value;
+			ClassIndex classIndex = 0;
 
-			// The first element of the CSV is the class
-			std::getline(lineStream, value, ',');
-			ClassIndex classIndex = dataset.class_index(value);
-
-			for (Attribute::Index attribIndex = 0; std::getline(lineStream, value, ','); ++attribIndex)
+			// If the first element of the CSV is the class
+			if (classFirst)
 			{
-				assert(attribIndex < dataset.num_attributes());
+				std::getline(lineStream, value, ',');
+				classIndex = dataset.class_index(value);
+			}
+
+			for (Attribute::Index attribIndex = 0; attribIndex < dataset.num_attributes(); ++attribIndex)
+			{
+				std::getline(lineStream, value, ',');
 
 				auto valueIndex = dataset.get_attribute(attribIndex).value_index(value);
 				attributes.push_back(valueIndex);
+			}
+
+			if (!classFirst)
+			{
+				std::getline(lineStream, value);
+				classIndex = dataset.class_index(value);
 			}
 
 			lineStream.clear();
@@ -42,32 +52,56 @@ namespace ml
 		}
 	}
 
-	DataSet load_house_votes_data_set()
+	DataSet load_house_votes_data()
 	{
 		// Initialize the dataset
 		DataSet result{
-			{ "democrat", "republican" },
+			{ "republican", "democrat" },
 			{
-				Attribute{ "handicapped-infants", {"y", "n"} },
-				Attribute{ "water-project-cost-sharing", {"y", "n"} },
-				Attribute{ "adoption-of-the-budget-resolution", {"y", "n"} },
-				Attribute{ "position-fee-freeze", {"y", "n"} },
-				Attribute{ "el-salvador-aid", {"y", "n"} },
-				Attribute{ "religious-groups-in-schools", {"y", "n"} },
-				Attribute{ "anti-satellite-test-ban", {"y", "n"} },
-				Attribute{ "aid-to-nicaraguan-contras", {"y", "n"} },
-				Attribute{ "mx-missles", {"y", "n"} },
-				Attribute{ "immigration", {"y", "n"} },
-				Attribute{ "synfuels-corporation-cutback", {"y", "n"} },
-				Attribute{ "education-spending", {"y", "n"} },
-				Attribute{ "superfund-right-to-sue", {"y", "n"} },
-				Attribute{ "crime", {"y", "n"} },
-				Attribute{ "duty-free-exports", {"y", "n"} },
-				Attribute{ "export-administration-act-south-africa", {"y", "n"} }
+				Attribute{ "handicapped-infants", {"n", "y"} },
+				Attribute{ "water-project-cost-sharing",{ "n", "y" } },
+				Attribute{ "adoption-of-the-budget-resolution",{ "n", "y" } },
+				Attribute{ "position-fee-freeze",{ "n", "y" } },
+				Attribute{ "el-salvador-aid",{ "n", "y" } },
+				Attribute{ "religious-groups-in-schools",{ "n", "y" } },
+				Attribute{ "anti-satellite-test-ban",{ "n", "y" } },
+				Attribute{ "aid-to-nicaraguan-contras",{ "n", "y" } },
+				Attribute{ "mx-missles",{ "n", "y" } },
+				Attribute{ "immigration",{ "n", "y" } },
+				Attribute{ "synfuels-corporation-cutback",{ "n", "y" } },
+				Attribute{ "education-spending",{ "n", "y" } },
+				Attribute{ "superfund-right-to-sue",{ "n", "y" } },
+				Attribute{ "crime",{ "n", "y" } },
+				Attribute{ "duty-free-exports",{ "n", "y" } },
+				Attribute{ "export-administration-act-south-africa",{ "n", "y" } }
 			}};
 
 		// Load from file
-		load_data_set(result, "data/house-votes-84.data.txt");
+		load_data_set(result, "data/house-votes-84.data.txt", true);
+		result.finalize();
+		return result;
+	}
+
+	DataSet load_breast_cancer_data()
+	{
+		DataSet result{
+			{ "2", "4" },
+			{
+				Attribute{},
+				Attribute{ "Clump Thickness", {"1", "2", "3", "4", "5", "6", "7", "8", "9", "10" } },
+				Attribute{ "Uniformity of Cell Size", { "1", "2", "3", "4", "5", "6", "7", "8", "9", "10" } },
+				Attribute{ "Uniformity of Cell Shape", { "1", "2", "3", "4", "5", "6", "7", "8", "9", "10" } },
+				Attribute{ "Marginal Adhesion", { "1", "2", "3", "4", "5", "6", "7", "8", "9", "10" } },
+				Attribute{ "Single Epithelial Cell Size", { "1", "2", "3", "4", "5", "6", "7", "8", "9", "10" } },
+				Attribute{ "Bare Nuclei",{ "1", "2", "3", "4", "5", "6", "7", "8", "9", "10" } },
+				Attribute{ "Bland Chlomatin", { "1", "2", "3", "4", "5", "6", "7", "8", "9", "10" } },
+				Attribute{ "Normal Nucleoli", { "1", "2", "3", "4", "5", "6", "7", "8", "9", "10" } },
+				Attribute{ "Mitoses", { "1", "2", "3", "4", "5", "6", "7", "8", "9", "10" } }
+			}
+		};
+
+		load_data_set(result, "data/breast-cancer-wisconsin.data.txt", false);
+		result.finalize();
 		return result;
 	}
 }

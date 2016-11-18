@@ -1,6 +1,7 @@
 // main.cpp
 
 #include <iostream>
+#include <chrono>
 #include "../include/DataSets.h"
 #include "../include/KNearestNeighbor.h"
 
@@ -8,17 +9,24 @@ using IAlgorithm = std::size_t(const ml::DataSet& database, const std::vector<ml
 
 void run_algorithm(const ml::DataSet& dataset, IAlgorithm* algorithm)
 {
-	const std::size_t foldSize = dataset.num_instances() / 10;
+	constexpr std::size_t NUM_FOLDS = 10;
+	const std::size_t foldSize = dataset.num_instances() / NUM_FOLDS;
+	std::vector<std::size_t> results;
+	results.assign(NUM_FOLDS, 0);
 
-	for (std::size_t i = 0; i < 10; ++i)
+	// Get the time the benchmark started
+	const auto start = std::chrono::high_resolution_clock::now();
+
+	// Run the benchmark
+	for (std::size_t i = 0; i < NUM_FOLDS; ++i)
 	{
 		std::vector<ml::Instance> trainingSet;
-		trainingSet.reserve(foldSize * 9);
+		trainingSet.reserve(foldSize * (NUM_FOLDS - 1));
 
 		std::vector<ml::Instance> testSet;
 		testSet.reserve(foldSize);
 
-		for (std::size_t instance = 0; instance < foldSize * 10; ++instance)
+		for (std::size_t instance = 0; instance < foldSize * NUM_FOLDS; ++instance)
 		{
 			if (instance / foldSize == i)
 			{
@@ -31,15 +39,28 @@ void run_algorithm(const ml::DataSet& dataset, IAlgorithm* algorithm)
 		}
 
 		// Run the algorithm
-		auto numCorrect = algorithm(dataset, trainingSet, testSet);
-		std::cout << (float)numCorrect / testSet.size() << std::endl;
+		results[i] = algorithm(dataset, trainingSet, testSet);
 	}
+
+	// Get the time the benchmark ended
+	const auto end = std::chrono::high_resolution_clock::now();
+
+	// Print out the accuracy for each run
+	for (auto result : results)
+	{
+		const auto accuracy = static_cast<float>(result * 100) / foldSize;
+		std::cout << "Accuracy: " << accuracy << "%" << std::endl;
+	}
+
+	// Print out the total time elapsed in milliseconds
+	const auto elapsedTime = std::chrono::duration_cast<std::chrono::milliseconds>(end - start);
+	std::cout << "Total elapsed time: " << elapsedTime.count() << "ms" << std::endl;
 }
 
 int main()
 {
 	// load it
-	auto dataset = ml::load_house_votes_data_set();
+	auto dataset = ml::load_house_votes_data();
 
 	// print it
 	//for (std::size_t i = 0; i < dataset.num_instances(); ++i)

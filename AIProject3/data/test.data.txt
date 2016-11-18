@@ -1,0 +1,10 @@
+republican,n,n,n,n,n,n,n,n,n,n,n,n,n,n,n,n
+democrat,y,y,y,y,y,y,y,y,y,y,y,y,y,y,y,y
+republican,n,n,n,n,n,n,n,n,n,n,n,n,n,n,n,n
+democrat,y,y,y,y,y,y,y,y,y,y,y,y,y,y,y,y
+republican,n,n,n,n,n,n,n,n,n,n,n,n,n,n,n,n
+democrat,y,y,y,y,y,y,y,y,y,y,y,y,y,y,y,y
+republican,n,n,n,n,n,n,n,n,n,n,n,n,n,n,n,n
+democrat,y,y,y,y,y,y,y,y,y,y,y,y,y,y,y,y
+republican,n,n,n,n,n,n,n,n,n,n,n,n,n,n,n,n
+democrat,y,y,y,y,y,y,y,y,y,y,y,y,y,y,y,y

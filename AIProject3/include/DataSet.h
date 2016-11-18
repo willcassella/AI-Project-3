@@ -22,6 +22,12 @@ namespace ml
 
 		ValueIndex value_index(const std::string& value) const
 		{
+			// If this attribute is to be ignored
+			if (domain.empty())
+			{
+				return 0;
+			}
+
 			// Check if we're getting an unknown
 			if (value == "?")
 			{
@@ -153,6 +159,21 @@ namespace ml
 			for (std::size_t attribIndex = 0; attribIndex < _attributes.size(); ++attribIndex)
 			{
 				_attributes[attribIndex].instance_values.push_back(attributes[attribIndex]);
+			}
+		}
+
+		void finalize()
+		{
+			for (std::size_t i = 0; i < _attributes.size();)
+			{
+				if (_attributes[i].domain.empty())
+				{
+					_attributes.erase(_attributes.begin() + i);
+				}
+				else
+				{
+					++i;
+				}
 			}
 		}
 
