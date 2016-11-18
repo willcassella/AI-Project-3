@@ -68,7 +68,7 @@ void run_algorithm(const ml::DataSet& dataset, IAlgorithm* algorithm)
 int main()
 {
 	// load the dataset
-	auto dataset = ml::load_soybean_data();
+	auto dataset = ml::load_breast_cancer_data();
 
 	// Run the nearest neighbor algorithm
 	std::cout << "Nearest Neighbor:" << std::endl;
