@@ -4,6 +4,7 @@
 #include <tuple>
 #include <future>
 #include <numeric>
+#include <limits>
 #include "../include/ID3.h"
 #include "../include/DataSet.h"
 
@@ -57,6 +58,7 @@ namespace ml
 			PredFnT&& pred)
 		{
 			float entropy = 0;
+			std::size_t instanceCount = 0;
 
 			// Array of all
 			std::vector<std::size_t> classCounter;
@@ -67,6 +69,8 @@ namespace ml
 				// If we're considering this instance when calculating the entropy
 				if (pred(instance))
 				{
+					instanceCount += 1;
+
 					// Increment the counter for the class this instance is a member of
 					classCounter[instance.get_class()] += 1;
 				}
@@ -90,7 +94,7 @@ namespace ml
 					mostCommonClass = i;
 				}
 
-				const float proportion = static_cast<float>(count) / numClasses;
+				const float proportion = static_cast<float>(count) / instanceCount;
 				entropy += proportion * std::log2(proportion);
 			}
 
@@ -141,7 +145,8 @@ namespace ml
 		{
 			// Get the current entropy of the node and most common class
 			float entropy;
-			std::tie(entropy, node.class_index) = calculate_entropy(subset, dataset.num_classes(), [](auto){return true;});
+			auto pred = [](auto) {return true; };
+			std::tie(entropy, node.class_index) = calculate_entropy(subset, dataset.num_classes(), pred);
 
 			// If there is no entropy or no more attributes to select from
 			if (entropy == 0 || attributes.empty())
@@ -157,7 +162,7 @@ namespace ml
 
 			// There's still entropy and attributes to split by, so we need to recurse
 			auto bestAttribute = attributes.begin();
-			float bestAttributeInformationGain = 0;
+			float bestAttributeInformationGain = std::numeric_limits<float>::lowest();
 
 			for (auto iter = attributes.begin(); iter != attributes.end(); ++iter)
 			{
@@ -180,27 +185,23 @@ namespace ml
 			// Remove the attribute from the list of attributes
 			auto attrib = *bestAttribute;
 			attributes.erase(bestAttribute);
+			node.split_attribute = attrib;
 
 			// Get the domain size of the attribute we chose
 			const auto attribSize = dataset.get_attribute(attrib).domain.size();
 
 			// Recurse by splittin on the best attribute
-			std::vector<std::future<void>> childProcs;
-			childProcs.reserve(attribSize);
 			node.children.reserve(attribSize);
 
-			for (auto& childSubset : split_subset(subset, attrib, attribSize))
+			for (auto childSubset : split_subset(subset, attrib, attribSize))
 			{
 				// Create a child node
 				auto child = std::make_unique<Node>();
 				auto* pChild = child.get();
 				node.children.push_back(std::move(child));
-				pChild->split_attribute = attrib;
 
 				// Recurse on it
-				//childProcs.push_back(std::async(
-					//std::launch::async,
-					id3_recurse(
+				id3_recurse(
 					dataset,
 					std::move(childSubset),
 					attributes,

@@ -61,22 +61,8 @@ void run_algorithm(const ml::DataSet& dataset, IAlgorithm* algorithm)
 int main()
 {
 	// load it
-	auto dataset = ml::load_soybean_data();
-
-	// print it
-	//for (std::size_t i = 0; i < dataset.num_instances(); ++i)
-	//{
-	//	auto instance = dataset.get_instance(i);
-
-	//	for (ml::Attribute::Index attrib = 0; attrib < dataset.num_attributes(); ++attrib)
-	//	{
-	//		std::cout << dataset.get_attribute(attrib).value_name(instance.get_attrib(attrib)) << ", ";
-	//	}
-
-	//	std::cout << ": " << dataset.class_name(instance.get_class()) << std::endl;
-	//}
-
-	run_algorithm(dataset, &ml::id3::algorithm);
+	auto dataset = ml::load_iris_data();
+	run_algorithm(dataset, &ml::k_nearest_neighbor::algorithm);
 
 	std::cin.get();
 }

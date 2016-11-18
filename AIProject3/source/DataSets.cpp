@@ -123,7 +123,7 @@ namespace ml
 			} };
 
 		// Load from file
-		load_data_set(result, "data/test.data.txt", true);
+		load_data_set(result, "data/house-votes-84.data.txt", true);
 		result.finalize();
 		return result;
 	}
