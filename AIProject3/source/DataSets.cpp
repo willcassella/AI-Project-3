@@ -12,35 +12,42 @@ namespace ml
 		std::ifstream file{ path, std::ios::in };
 
 		// Load all instances from the file
-		std::string value;
-		std::vector<std::size_t> instances;
-		instances.reserve(dataset.num_attributes());
+		std::vector<Attribute::ValueIndex> attributes;
+		attributes.reserve(dataset.num_attributes());
 
 		std::string line;
 		std::stringstream lineStream;
 		while (std::getline(file, line))
 		{
 			lineStream << line;
+			std::string value;
 
-			for (std::size_t attribIndex = 0; std::getline(lineStream, value, ','); attribIndex = (attribIndex + 1) % dataset.num_attributes())
+			// The first element of the CSV is the class
+			std::getline(lineStream, value, ',');
+			ClassIndex classIndex = dataset.class_index(value);
+
+			for (Attribute::Index attribIndex = 0; std::getline(lineStream, value, ','); ++attribIndex)
 			{
-				auto valueIndex = dataset.attrib_value_index(attribIndex, value);
-				instances.push_back(valueIndex);
+				assert(attribIndex < dataset.num_attributes());
+
+				auto valueIndex = dataset.get_attribute(attribIndex).value_index(value);
+				attributes.push_back(valueIndex);
 			}
 
 			lineStream.clear();
-		}
 
-		// Add them to the dataset
-		dataset.set_instances(std::move(instances));
+			// Add the instance to the dataset
+			dataset.add_instance(classIndex, attributes);
+			attributes.clear();
+		}
 	}
 
 	DataSet load_house_votes_data_set()
 	{
 		// Initialize the dataset
 		DataSet result{
+			{ "democrat", "republican" },
 			{
-				Attribute{ "class", {"democrat", "republican"} },
 				Attribute{ "handicapped-infants", {"y", "n"} },
 				Attribute{ "water-project-cost-sharing", {"y", "n"} },
 				Attribute{ "adoption-of-the-budget-resolution", {"y", "n"} },
@@ -57,7 +64,7 @@ namespace ml
 				Attribute{ "crime", {"y", "n"} },
 				Attribute{ "duty-free-exports", {"y", "n"} },
 				Attribute{ "export-administration-act-south-africa", {"y", "n"} }
-			}, 0};
+			}};
 
 		// Load from file
 		load_data_set(result, "data/house-votes-84.data.txt");

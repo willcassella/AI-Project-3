@@ -1,7 +1,7 @@
 // KNearestNeighbor.cpp
 
 #include <map>
-#include <limits>
+#include <iostream>
 #include <future>
 #include "../include/KNearestNeighbor.h"
 #include "../include/DataSet.h"
@@ -34,7 +34,7 @@ namespace ml
 				const auto classIndex = instance.get_class();
 
 				// Get the value this instance has for the specified attribute
-				const auto valueIndex = instance.get_attrib_value(attribIndex);
+				const auto valueIndex = instance.get_attrib(attribIndex);
 
 				// Increment the number of times we've seen this value
 				valueCount[valueIndex] += 1;
@@ -80,10 +80,10 @@ namespace ml
 
 			for (std::size_t i = 0; i < trainingSet.size(); ++i)
 			{
-				const auto trainingValueIndex = trainingSet[i].get_attrib_value(attribIndex);
+				const auto trainingValueIndex = trainingSet[i].get_attrib(attribIndex);
 
 				// Sum up the conditional probability differences for the attribute and the training value
-				for (std::size_t classIndex = 0; classIndex < numClasses; ++classIndex)
+				for (ClassIndex classIndex = 0; classIndex < numClasses; ++classIndex)
 				{
 					result[i] += (cpCache[attribValue * numClasses + classIndex] - cpCache[trainingValueIndex * numClasses + classIndex]);
 				}
@@ -113,14 +113,14 @@ namespace ml
 				results.reserve(numAttributes);
 
 				// Queue up all the attributes
-				for (std::size_t i = 0; i < numAttributes; ++i)
+				for (Attribute::Index i = 0; i < numAttributes; ++i)
 				{
 					results.push_back(std::async(
 						std::launch::async,
 						attribute_conditional_probability,
 						trainingSet,
 						i,
-						dataset.num_attrib_values(i),
+						dataset.get_attribute(i).domain.size(),
 						dataset.num_classes()));
 				}
 
@@ -131,7 +131,7 @@ namespace ml
 				}
 			}
 
-			std::size_t classify(
+			ClassIndex classify(
 				const DataSet& dataset,
 				const std::vector<Instance>& trainingSet,
 				const Instance instance,
@@ -152,7 +152,7 @@ namespace ml
 						_attribute_conditional_probabilities[i],
 						i,
 						dataset.num_classes(),
-						instance.get_attrib_value(i),
+						instance.get_attrib(i),
 						1));
 				}
 
@@ -171,9 +171,9 @@ namespace ml
 
 		private:
 
-			using Neighbor = std::pair<float, std::size_t>;
+			using Neighbor = std::pair<float, ClassIndex>;
 
-			static std::size_t classify_impl(
+			static ClassIndex classify_impl(
 				const std::vector<Instance>& trainingSet,
 				const std::vector<AttributeVDM>& attributeDifferences,
 				const unsigned int k)
@@ -187,7 +187,7 @@ namespace ml
 					float distance = 0;
 
 					// For each attribute
-					for (Attribute::Index attribIndex = 0; attribIndex < attributeDifferences.size(); ++i)
+					for (Attribute::Index attribIndex = 0; attribIndex < attributeDifferences.size(); ++attribIndex)
 					{
 						// Add the attribute's difference metric and square it (distance function)
 						distance += std::pow(attributeDifferences[attribIndex][i], 2);
@@ -221,7 +221,7 @@ namespace ml
 				for (auto iter = nearestNeighbors.begin(); iter < nearestNeighbors.end(); ++iter)
 				{
 					// Don't bother if this one is further
-					if (iter->first > candidate.first)
+					if (candidate.first > iter->first)
 					{
 						continue;
 					}
@@ -240,10 +240,10 @@ namespace ml
 				}
 			}
 
-			static std::size_t most_common_class(
+			static ClassIndex most_common_class(
 				const std::vector<Neighbor>& nearestNeighbors)
 			{
-				std::map<std::size_t, std::size_t> classCounts;
+				std::map<ClassIndex, std::size_t> classCounts;
 
 				// Count up all the classes
 				for (auto neighbor : nearestNeighbors)
@@ -252,7 +252,7 @@ namespace ml
 				}
 
 				// Figure out which one has the most occurrences
-				std::size_t classIndex = 0;
+				ClassIndex classIndex = 0;
 				std::size_t occurrences = 0;
 
 				for (auto iter : classCounts)
@@ -272,5 +272,25 @@ namespace ml
 
 			std::vector<AttributeCPCache> _attribute_conditional_probabilities;
 		};
+
+		std::size_t algorithm(const DataSet& dataset, const std::vector<Instance>& trainingSet, const std::vector<Instance>& testSet)
+		{
+			VDMCache vdm;
+			vdm.init(dataset, trainingSet);
+
+			std::size_t numCorrect = 0;
+
+			for (auto instance : testSet)
+			{
+				// Try to classify the test set
+				auto classIndex = vdm.classify(dataset, trainingSet, instance, 3);
+				if (classIndex == instance.get_class())
+				{
+					numCorrect += 1;
+				}
+			}
+
+			return numCorrect;
+		}
 	}
 }

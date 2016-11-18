@@ -52,7 +52,7 @@ namespace ml
 			const std::size_t splitAttribIndex,
 			const std::size_t splitAttribSize)
 		{
-
+			return 0;
 		}
 	}
 }

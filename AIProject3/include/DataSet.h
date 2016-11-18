@@ -7,116 +7,21 @@
 
 namespace ml
 {
+	struct DataSet;
+	using ClassIndex = std::size_t;
+
 	/* Represents an attribute, including its name and domain of values. */
 	struct Attribute
 	{
 		using Index = std::size_t;
 		using ValueIndex = std::size_t;
 
-		//////////////////
-		///   Fields   ///
-	public:
-
-		/* The name of the attribute. */
-		std::string name;
-
-		/* The domain of values it may take on. */
-		std::vector<std::string> domain;
-	};
-
-	/* Represents an instance of a value in the dataset. */
-	struct Instance
-	{
-		////////////////////////
-		///   Constructors   ///
-	public:
-
-		Instance(const std::size_t* offset)
-			: _instance_offset(offset)
-		{
-		}
-
 		///////////////////
 		///   Methods   ///
 	public:
 
-		Attribute::ValueIndex get_attrib_value(Attribute::Index attribIndex) const
+		ValueIndex value_index(const std::string& value) const
 		{
-			return _instance_offset[attribIndex];
-		}
-
-		std::size_t get_class() const
-		{
-			return 0; // TODO
-		}
-
-		//////////////////
-		///   Fields   ///
-	private:
-
-		const std::size_t* _instance_offset;
-	};
-
-	/* Represents a complete set of data. */
-	struct DataSet
-	{
-		////////////////////////
-		///   Constructors   ///
-	public:
-
-		DataSet(std::vector<Attribute> attributes, std::size_t classAttribIndex)
-			: _class_attrib_index(classAttribIndex), _attributes(std::move(attributes))
-		{
-		}
-
-		///////////////////
-		///   Methods   ///
-	public:
-
-		/* Returns the attribute index that corresponds to the classification. */
-		std::size_t num_classes() const
-		{
-			return 0; // TODO
-		}
-
-		/* Returns the number of attributes in this dataset. */
-		std::size_t num_attributes() const
-		{
-			return _attributes.size();
-		}
-
-		/* Returns the number of instances in this dataset. */
-		std::size_t num_instances() const
-		{
-			return _instances.size() / _attributes.size();
-		}
-
-		/* Given an attribute index, returns the name of the attribute. */
-		const std::string& attrib_name(std::size_t attribIndex) const
-		{
-			return _attributes.at(attribIndex).name;
-		}
-
-		/* Given an attribute index and a vale index within that attribute, returns the name of the value. */
-		const std::string& attrib_value(std::size_t attribIndex, std::size_t valueIndex) const
-		{
-			return _attributes.at(attribIndex).domain.at(valueIndex);
-		}
-
-		std::size_t num_attrib_values(std::size_t attribIndex) const
-		{
-			return _attributes[attribIndex].domain.size();
-		}
-
-		/**
-		 * \brief Returns the value index for the value of the indexed attribute.
-		 * \param attribIndex The index of the attribute to search through.
-		 * \param value The value to get the index for.
-		 */
-		std::size_t attrib_value_index(std::size_t attribIndex, const std::string& value) const
-		{
-			const auto& domain = _attributes[attribIndex].domain;
-
 			// Check if we're getting an unknown
 			if (value == "?")
 			{
@@ -131,9 +36,105 @@ namespace ml
 			return iter - domain.begin();
 		}
 
+		const std::string& value_name(ValueIndex valueIndex) const
+		{
+			return domain.at(valueIndex);
+		}
+
+		//////////////////
+		///   Fields   ///
+	public:
+
+		/* The name of the attribute. */
+		std::string name;
+
+		/* The domain of values it may take on. */
+		std::vector<std::string> domain;
+
+		std::vector<ValueIndex> instance_values;
+	};
+
+	/* Represents an instance of a value in the dataset. */
+	struct Instance
+	{
+		////////////////////////
+		///   Constructors   ///
+	public:
+
+		Instance(const DataSet& dataset, const std::size_t index)
+			: _dataset(&dataset),
+			_index(index)
+		{
+		}
+
+		///////////////////z
+		///   Methods   ///
+	public:
+
+		ClassIndex get_class() const;
+
+		Attribute::ValueIndex get_attrib(Attribute::Index attribIndex) const;
+
+		//////////////////
+		///   Fields   ///
+	private:
+
+		const DataSet* _dataset;
+		std::size_t _index;
+	};
+
+	/* Represents a complete set of data. */
+	struct DataSet
+	{
+		friend struct Instance;
+
+		////////////////////////
+		///   Constructors   ///
+	public:
+
+		DataSet(std::vector<std::string> classes, std::vector<Attribute> attributes)
+			: _classes(std::move(classes)),
+			_attributes(std::move(attributes))
+		{
+		}
+
+		///////////////////
+		///   Methods   ///
+	public:
+
+		/* Returns the number of classes in this dataset. */
+		std::size_t num_classes() const
+		{
+			return _classes.size();
+		}
+
+		/* Returns the number of attributes in this dataset. */
+		std::size_t num_attributes() const
+		{
+			return _attributes.size();
+		}
+
+		/* Returns the number of instances in this dataset. */
+		std::size_t num_instances() const
+		{
+			return _instance_classes.size();
+		}
+
 		const Attribute& get_attribute(std::size_t attribIndex) const
 		{
 			return _attributes[attribIndex];
+		}
+
+		ClassIndex class_index(const std::string& className) const
+		{
+			auto iter = std::find(_classes.begin(), _classes.end(), className);
+			assert(iter != _classes.end());
+			return iter - _classes.begin();
+		}
+
+		const std::string& class_name(ClassIndex index) const
+		{
+			return _classes.at(index);
 		}
 
 		/**
@@ -142,20 +143,35 @@ namespace ml
 		 */
 		Instance get_instance(std::size_t index) const
 		{
-			return Instance{ _attributes.size(), &_instances[index * _attributes.size()] };
+			return Instance{ *this, index };
 		}
 
-		void set_instances(std::vector<std::size_t> instances)
+		void add_instance(ClassIndex classIndex, const std::vector<Attribute::ValueIndex>& attributes)
 		{
-			_instances = std::move(instances);
+			_instance_classes.push_back(classIndex);
+
+			for (std::size_t attribIndex = 0; attribIndex < _attributes.size(); ++attribIndex)
+			{
+				_attributes[attribIndex].instance_values.push_back(attributes[attribIndex]);
+			}
 		}
 
 		//////////////////
 		///   Fields   ///
 	private:
 
-		std::size_t _class_attrib_index;
+		std::vector<std::string> _classes;
 		std::vector<Attribute> _attributes;
-		std::vector<std::size_t> _instances;
+		std::vector<ClassIndex> _instance_classes;
 	};
+
+	inline ClassIndex Instance::get_class() const
+	{
+		return _dataset->_instance_classes[_index];
+	}
+
+	inline Attribute::ValueIndex Instance::get_attrib(Attribute::Index attribIndex) const
+	{
+		return _dataset->get_attribute(attribIndex).instance_values[_index];
+	}
 }
