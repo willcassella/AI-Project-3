@@ -4,6 +4,7 @@
 #include <chrono>
 #include "../include/DataSets.h"
 #include "../include/KNearestNeighbor.h"
+#include "../include/ID3.h"
 
 using IAlgorithm = std::size_t(const ml::DataSet& database, const std::vector<ml::Instance>& trainingSet, const std::vector<ml::Instance>& testSet);
 
@@ -60,7 +61,7 @@ void run_algorithm(const ml::DataSet& dataset, IAlgorithm* algorithm)
 int main()
 {
 	// load it
-	auto dataset = ml::load_house_votes_data();
+	auto dataset = ml::load_breast_cancer_data();
 
 	// print it
 	//for (std::size_t i = 0; i < dataset.num_instances(); ++i)
@@ -75,7 +76,7 @@ int main()
 	//	std::cout << ": " << dataset.class_name(instance.get_class()) << std::endl;
 	//}
 
-	run_algorithm(dataset, &ml::k_nearest_neighbor::algorithm);
+	run_algorithm(dataset, &ml::id3::algorithm);
 
 	std::cin.get();
 }

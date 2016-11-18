@@ -1,7 +1,6 @@
 // KNearestNeighbor.cpp
 
 #include <map>
-#include <iostream>
 #include <future>
 #include "../include/KNearestNeighbor.h"
 #include "../include/DataSet.h"
