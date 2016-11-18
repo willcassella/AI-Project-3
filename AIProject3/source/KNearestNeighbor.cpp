@@ -279,12 +279,15 @@ namespace ml
 			VDMCache vdm;
 			vdm.init(dataset, trainingSet);
 
+			// The value of K
+			constexpr unsigned int K_VALUE = 3;
+
 			std::size_t numCorrect = 0;
 
 			for (auto instance : testSet)
 			{
 				// Try to classify the test set
-				auto classIndex = vdm.classify(dataset, trainingSet, instance, 3);
+				auto classIndex = vdm.classify(dataset, trainingSet, instance, K_VALUE);
 				if (classIndex == instance.get_class())
 				{
 					numCorrect += 1;
