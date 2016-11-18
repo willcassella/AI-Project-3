@@ -3,6 +3,7 @@
 
 #include <vector>
 #include <string>
+#include <iostream>
 #include <cassert>
 
 namespace ml
@@ -137,6 +138,8 @@ namespace ml
 		///   Methods   ///
 	public:
 
+		void print() const;
+
 		ClassIndex get_class() const;
 
 		Attribute::ValueIndex get_attrib(Attribute::Index attribIndex) const;
@@ -245,6 +248,14 @@ namespace ml
 		std::vector<Attribute> _attributes;
 		std::vector<ClassIndex> _instance_classes;
 	};
+
+	inline void Instance::print() const
+	{
+		for (Attribute::Index i = 0; i < _dataset->num_attributes(); ++i)
+		{
+			std::cout << ", " << _dataset->get_attribute(i).value_name(get_attrib(i));
+		}
+	}
 
 	inline ClassIndex Instance::get_class() const
 	{

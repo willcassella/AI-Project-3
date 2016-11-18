@@ -4,6 +4,7 @@
 #include <future>
 #include "../include/KNearestNeighbor.h"
 #include "../include/DataSet.h"
+#include <iostream>
 
 namespace ml
 {
@@ -287,8 +288,14 @@ namespace ml
 				{
 					numCorrect += 1;
 				}
+
+				std::cout << "    Classified '";
+				instance.print();
+				std::cout << "' as '" << dataset.class_name(classIndex);
+				std::cout << "', actual class: '" << dataset.class_name(instance.get_class()) << "'" << std::endl;
 			}
 
+			std::cout << "Accuracy: " << static_cast<float>(numCorrect * 100) / testSet.size() << "%" << std::endl;
 			return numCorrect;
 		}
 	}

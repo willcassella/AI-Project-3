@@ -23,9 +23,6 @@ void run_algorithm(const ml::DataSet& dataset, IAlgorithm* algorithm)
 	std::iota(indexVec.begin(), indexVec.end(), 0);
 	std::random_shuffle(indexVec.begin(), indexVec.end());
 
-	// Get the time the benchmark started
-	const auto start = std::chrono::high_resolution_clock::now();
-
 	// Run the benchmark
 	for (std::size_t i = 0; i < NUM_FOLDS; ++i)
 	{
@@ -48,26 +45,19 @@ void run_algorithm(const ml::DataSet& dataset, IAlgorithm* algorithm)
 		}
 
 		// Run the algorithm
+		std::cout << "Run " << i << ":" << std::endl;
 		results[i] = algorithm(dataset, trainingSet, testSet);
 	}
 
-	// Get the time the benchmark ended
-	const auto end = std::chrono::high_resolution_clock::now();
+	// Determine the average accuracy
 	float averageAccuracy = 0;
-
-	// Print out the accuracy for each run
 	for (std::size_t i = 0; i < results.size(); ++i)
 	{
 		const auto accuracy = static_cast<float>(results[i] * 100) / foldSize;
 		averageAccuracy += accuracy;
-		std::cout << "Run " << i << " accuracy: " << accuracy << "%" << std::endl;
 	}
 
 	std::cout << "Average accuracy: " << averageAccuracy / results.size() << "%" << std::endl;
-
-	// Print out the total time elapsed in milliseconds
-	const auto elapsedTime = std::chrono::duration_cast<std::chrono::milliseconds>(end - start);
-	std::cout << "Total elapsed time: " << elapsedTime.count() << "ms" << std::endl << std::endl;
 }
 
 int main()
@@ -80,8 +70,8 @@ int main()
 	run_algorithm(dataset, &ml::k_nearest_neighbor::algorithm);
 
 	// Run the ID3 algorithm
-	std::cout << "ID3:" << std::endl;
-	run_algorithm(dataset, &ml::id3::algorithm);
+	std::cout << std::endl << "ID3:" << std::endl;
+	run_algorithm(dataset, &ml::id3_rep::algorithm);
 
 	std::cin.get();
 }

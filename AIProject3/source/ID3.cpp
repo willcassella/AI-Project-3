@@ -7,13 +7,23 @@
 #include <limits>
 #include "../include/ID3.h"
 #include "../include/DataSet.h"
+#include <iostream>
 
 namespace ml
 {
-	namespace id3
+	namespace id3_rep
 	{
 		struct Node
 		{
+			///////////////////
+			///   Methods   ///
+		public:
+
+			bool is_leaf() const
+			{
+				return children.empty();
+			}
+
 			//////////////////
 			///   Fields   ///
 		public:
@@ -210,6 +220,12 @@ namespace ml
 			}
 		}
 
+		/**
+		 * \brief Classifies the given dataset instance using the ID3 tree.
+		 * \param node The current root.
+		 * \param instance The instance to classify.
+		 * \return The class index of the instance.
+		 */
 		ClassIndex classify(
 			const Node& node,
 			Instance instance)
@@ -224,6 +240,74 @@ namespace ml
 			return classify(*node.children[instance.get_attrib(node.split_attribute)], instance);
 		}
 
+		/**
+		 * \brief Tests the validity of a prune.
+		 * \param root The root of the tre (NOT the source of the prune).
+		 * \param pruneSet The pruning test data.s
+		 * \return The accuracy of the tree in its current state (ranges between 0-1).
+		 */
+		float prune_test(
+			const Node& root,
+			const std::vector<Instance>& pruneSet)
+		{
+			float result = 0.f;
+
+			for (auto instance : pruneSet)
+			{
+				if (classify(root, instance) == instance.get_class())
+				{
+					result += 1.f;
+				}
+			}
+
+			return result / pruneSet.size();
+		}
+
+		/**
+		 * \brief Recursively prunes nodes from the tree.
+		 * \param root The root of the tree.
+		 * \param node The node currently being tried for pruning.
+		 * \param pruneSet The pruning test set.
+		 */
+		void prune_recurse(
+			const Node& root,
+			Node& node,
+			const std::vector<Instance>& pruneSet)
+		{
+			if (node.is_leaf())
+			{
+				return;
+			}
+
+			// Try to prune all this node's children
+			for (auto& child : node.children)
+			{
+				prune_recurse(root, *child, pruneSet);
+			}
+
+			// See if this node now contains any non-leaves
+			for (auto& child : node.children)
+			{
+				if (!child->is_leaf())
+				{
+					return;
+				}
+			}
+
+			// Test the accuracy before pruning
+			float prePrune = prune_test(root, pruneSet);
+
+			// Back up the children
+			auto children = std::move(node.children);
+
+			// If pruning this node does not reduce the accuracy
+			if (prePrune - prune_test(root, pruneSet) != 0.f)
+			{
+				// Restore the children
+				node.children = std::move(children);
+			}
+		}
+
 		std::size_t algorithm(const DataSet& dataset, const std::vector<Instance>& trainingSet, const std::vector<Instance>& testSet)
 		{
 			// Build up a list of attributes
@@ -231,13 +315,30 @@ namespace ml
 			attributes.assign(dataset.num_attributes(), 0);
 			std::iota(attributes.begin(), attributes.end(), 0);
 
+			// Copy the training set and shuffle it, so we don't end up using the same values as pruning values repeatedly
+			auto trainingSetCopy = trainingSet;
+			std::random_shuffle(trainingSetCopy.begin(), trainingSetCopy.end());
+
+			// 20% of the training set is set aside for pruning
+			const std::size_t pruneSize = trainingSetCopy.size() / 5;
+			std::vector<Instance> pruneSet;
+			pruneSet.reserve(pruneSize);
+
+			while (pruneSet.size() < pruneSize)
+			{
+				pruneSet.push_back(trainingSetCopy.back());
+				trainingSetCopy.erase(trainingSetCopy.end() - 1);
+			}
+
 			// Build the tree
 			auto root = std::make_unique<Node>();
-			id3_recurse(dataset, trainingSet, std::move(attributes), nullptr, *root);
+			id3_recurse(dataset, trainingSetCopy, std::move(attributes), nullptr, *root);
 
-			std::size_t numCorrect = 0;
+			// Prune the training set
+			prune_recurse(*root, *root, pruneSet);
 
 			// Classify each value
+			std::size_t numCorrect = 0;
 			for (auto instance : testSet)
 			{
 				auto classIndex = classify(*root, instance);
@@ -245,8 +346,14 @@ namespace ml
 				{
 					numCorrect += 1;
 				}
+
+				std::cout << "    Classified '";
+				instance.print();
+				std::cout << "' as '" << dataset.class_name(classIndex);
+				std::cout << "', actual class: '" << dataset.class_name(instance.get_class()) << "'" << std::endl;
 			}
 
+			std::cout << "Accuracy: " << static_cast<float>(numCorrect * 100) / testSet.size() << "%" << std::endl;
 			return numCorrect;
 		}
 	}
