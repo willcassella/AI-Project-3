@@ -61,7 +61,7 @@ void run_algorithm(const ml::DataSet& dataset, IAlgorithm* algorithm)
 int main()
 {
 	// load it
-	auto dataset = ml::load_breast_cancer_data();
+	auto dataset = ml::load_soybean_data();
 
 	// print it
 	//for (std::size_t i = 0; i < dataset.num_instances(); ++i)

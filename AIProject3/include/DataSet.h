@@ -16,6 +16,37 @@ namespace ml
 		using Index = std::size_t;
 		using ValueIndex = std::size_t;
 
+		////////////////////////
+		///   Constructors   ///
+	public:
+
+		static Attribute discretize(std::string name, float min, float max, int segments)
+		{
+			Attribute result;
+			result.name = std::move(name);
+			result._discretized_min = min;
+			result._discretized_max = max;
+
+			const float distance = max - min;
+			const float increment = distance / segments;
+
+			result._discretized_segment_size = increment;
+
+			for (int i = 0; i < segments; ++i)
+			{
+				float element = min + increment * i;
+				result.domain.push_back(std::to_string(element));
+			}
+
+			return result;
+		}
+
+		Attribute() = default;
+		Attribute(std::string name, std::vector<std::string> domain)
+			: name(std::move(name)), domain(std::move(domain))
+		{
+		}
+
 		///////////////////
 		///   Methods   ///
 	public:
@@ -32,6 +63,29 @@ namespace ml
 			if (value == "?")
 			{
 				return std::rand() % domain.size();
+			}
+
+			// If this attribute has been discretized
+			if (_discretized_segment_size > 0)
+			{
+				// Convert the string to a numeric value
+				float nvalue = std::strtof(value.c_str(), nullptr);
+
+				// If it's below the minimum, just return the minimum
+				if (nvalue < _discretized_min)
+				{
+					return 0;
+				}
+
+				// If it's above the maximum, just return the maximum
+				if (nvalue >= _discretized_max)
+				{
+					return domain.size() - 1;
+				}
+
+				auto index = static_cast<std::size_t>((nvalue - _discretized_min) / _discretized_segment_size);
+				assert(index < domain.size());
+				return index;
 			}
 
 			// Search for the element of the domain
@@ -58,6 +112,12 @@ namespace ml
 		std::vector<std::string> domain;
 
 		std::vector<ValueIndex> instance_values;
+
+	private:
+
+		float _discretized_segment_size = 0;
+		float _discretized_min = 0.f;
+		float _discretized_max = 0.f;
 	};
 
 	/* Represents an instance of a value in the dataset. */
