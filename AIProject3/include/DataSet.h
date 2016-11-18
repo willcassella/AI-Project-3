@@ -10,6 +10,9 @@ namespace ml
 	/* Represents an attribute, including its name and domain of values. */
 	struct Attribute
 	{
+		using Index = std::size_t;
+		using ValueIndex = std::size_t;
+
 		//////////////////
 		///   Fields   ///
 	public:
@@ -37,9 +40,14 @@ namespace ml
 		///   Methods   ///
 	public:
 
-		std::size_t get_attrib_value(std::size_t attribIndex) const
+		Attribute::ValueIndex get_attrib_value(Attribute::Index attribIndex) const
 		{
 			return _instance_offset[attribIndex];
+		}
+
+		std::size_t get_class() const
+		{
+			return 0; // TODO
 		}
 
 		//////////////////
@@ -65,10 +73,10 @@ namespace ml
 		///   Methods   ///
 	public:
 
-		/* Returns the number of instances in this dataset. */
-		std::size_t num_instances() const
+		/* Returns the attribute index that corresponds to the classification. */
+		std::size_t num_classes() const
 		{
-			return _instances.size() / _attributes.size();
+			return 0; // TODO
 		}
 
 		/* Returns the number of attributes in this dataset. */
@@ -77,10 +85,10 @@ namespace ml
 			return _attributes.size();
 		}
 
-		/* Returns the attribute index that corresponds to the classification. */
-		std::size_t class_attrib_index() const
+		/* Returns the number of instances in this dataset. */
+		std::size_t num_instances() const
 		{
-			return _class_attrib_index;
+			return _instances.size() / _attributes.size();
 		}
 
 		/* Given an attribute index, returns the name of the attribute. */
