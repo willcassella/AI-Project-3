@@ -1,13 +1,13 @@
-// ID3.cpp
+// ID3.cpp - Will Cassella
 
 #include <cmath>
 #include <tuple>
 #include <future>
 #include <numeric>
 #include <limits>
+#include <iostream>
 #include "../include/ID3.h"
 #include "../include/DataSet.h"
-#include <iostream>
 
 namespace ml
 {
@@ -19,6 +19,7 @@ namespace ml
 			///   Methods   ///
 		public:
 
+			/* Returns whether this node is a leaf node. */
 			bool is_leaf() const
 			{
 				return children.empty();
@@ -44,6 +45,13 @@ namespace ml
 			std::vector<std::unique_ptr<Node>> children;
 		};
 
+		/**
+		 * \brief Splits the given instance subset by the given attribute.
+		 * \param subset The subset to split.
+		 * \param attrib The index of the attribute to split the subset by.
+		 * \param attribDomainSize The size of the domain of the attribute.
+		 * \return The subset split by the attribute.
+		 */
 		auto split_subset(
 			const std::vector<Instance>& subset,
 			const Attribute::Index attrib,
@@ -146,6 +154,10 @@ namespace ml
 			return currentEntropy - attribEntropy;
 		}
 
+		/**
+		 * \brief Recursively builds the ID3 tree.
+		 * \param dataset The dataset to build it with.
+		 */
 		void id3_recurse(
 			const DataSet& dataset,
 			std::vector<Instance> subset,

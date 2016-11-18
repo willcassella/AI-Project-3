@@ -1,4 +1,4 @@
-// DataSet.h
+// DataSet.h - Will Cassella
 #pragma once
 
 #include <vector>
@@ -21,6 +21,7 @@ namespace ml
 		///   Constructors   ///
 	public:
 
+		/* Automatically generate discreet values for the given range. */
 		static Attribute discretize(std::string name, float min, float max, int segments)
 		{
 			Attribute result;
@@ -43,6 +44,8 @@ namespace ml
 		}
 
 		Attribute() = default;
+
+		/* Constructs an attribute with an explicit range. */
 		Attribute(std::string name, std::vector<std::string> domain)
 			: name(std::move(name)), domain(std::move(domain))
 		{
@@ -52,6 +55,7 @@ namespace ml
 		///   Methods   ///
 	public:
 
+		/* Returns the value index for the named value on this attribute. */
 		ValueIndex value_index(const std::string& value) const
 		{
 			// If this attribute is to be ignored
@@ -97,6 +101,7 @@ namespace ml
 			return iter - domain.begin();
 		}
 
+		/* Retuns the value name for the indexed value on this attribute.  */
 		const std::string& value_name(ValueIndex valueIndex) const
 		{
 			return domain.at(valueIndex);
@@ -112,6 +117,7 @@ namespace ml
 		/* The domain of values it may take on. */
 		std::vector<std::string> domain;
 
+		/* The values for this attribute for all values in the dataset. */
 		std::vector<ValueIndex> instance_values;
 
 	private:
@@ -138,10 +144,19 @@ namespace ml
 		///   Methods   ///
 	public:
 
+		/* Prints this instance with names instead of numbers. */
 		void print() const;
 
+		/**
+		 * \brief Returns the real class index for this index, used to verify classification.
+		 */
 		ClassIndex get_class() const;
 
+		/**
+		 * \brief Returns the value index for the attribute index for this index.
+		 * \param attribIndex The attribute to get the value for.
+		 * \return The value index for the indexed attribute.
+		 */
 		Attribute::ValueIndex get_attrib(Attribute::Index attribIndex) const;
 
 		//////////////////
@@ -189,11 +204,21 @@ namespace ml
 			return _instance_classes.size();
 		}
 
+		/**
+		 * \brief Returns the attribute in this dataset with the given index.
+		 * \param attribIndex The index of the attribute to get.
+		 * \return The attribute object.
+		 */
 		const Attribute& get_attribute(std::size_t attribIndex) const
 		{
 			return _attributes[attribIndex];
 		}
 
+		/**
+		 * \brief Returns the class index for the named class.
+		 * \param className The name of the class to get the index for.
+		 * \return The class index for the given name.
+		 */
 		ClassIndex class_index(const std::string& className) const
 		{
 			auto iter = std::find(_classes.begin(), _classes.end(), className);
@@ -201,6 +226,11 @@ namespace ml
 			return iter - _classes.begin();
 		}
 
+		/**
+		 * \brief Returns the name of the indexed class.
+		 * \param index The index of the class to get the name for.
+		 * \return The name of the indexed class.
+		 */
 		const std::string& class_name(ClassIndex index) const
 		{
 			return _classes.at(index);
@@ -215,6 +245,11 @@ namespace ml
 			return Instance{ *this, index };
 		}
 
+		/**
+		 * \brief Adds an instance of the given class with the given attribute values to this database.
+		 * \param classIndex The index of the class this instance falls under.
+		 * \param attributes The index of the attribute values for each attribute.
+		 */
 		void add_instance(ClassIndex classIndex, const std::vector<Attribute::ValueIndex>& attributes)
 		{
 			_instance_classes.push_back(classIndex);
@@ -225,6 +260,9 @@ namespace ml
 			}
 		}
 
+		/**
+		 * \brief Finalizes setting up this dataset, run after inserting all intsances.
+		 */
 		void finalize()
 		{
 			for (std::size_t i = 0; i < _attributes.size();)

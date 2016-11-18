@@ -1,8 +1,7 @@
-// DataSets.cpp
+// DataSets.cpp - Will Cassella
 
 #include <fstream>
 #include <sstream>
-#include <cstring>
 #include "../include/DataSets.h"
 
 namespace ml

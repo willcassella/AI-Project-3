@@ -1,10 +1,10 @@
-// KNearestNeighbor.cpp
+// KNearestNeighbor.cpp - Will Cassella
 
 #include <map>
 #include <future>
+#include <iostream>
 #include "../include/KNearestNeighbor.h"
 #include "../include/DataSet.h"
-#include <iostream>
 
 namespace ml
 {
@@ -67,6 +67,7 @@ namespace ml
 
 		using AttributeVDM = std::vector<float>;
 
+		/* Computes the VDM for the value of the given attribute against all instance in the test set. */
 		AttributeVDM attribute_value_difference_metric(
 			const std::vector<Instance>& trainingSet,
 			const AttributeCPCache& cpCache,

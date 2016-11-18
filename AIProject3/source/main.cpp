@@ -1,15 +1,20 @@
-// main.cpp
+// main.cpp - Will Cassella
 
+#include <algorithm>
 #include <iostream>
-#include <chrono>
+#include <numeric>
 #include "../include/DataSets.h"
 #include "../include/KNearestNeighbor.h"
 #include "../include/ID3.h"
-#include <algorithm>
-#include <numeric>
 
+/* An algorithm is just a function with the following signature: */
 using IAlgorithm = std::size_t(const ml::DataSet& database, const std::vector<ml::Instance>& trainingSet, const std::vector<ml::Instance>& testSet);
 
+/**
+ * \brief Runs the given algorithm on the given dataset, by generating 10 cross folds.
+ * \param dataset The dataset being tested on.
+ * \param algorithm The algorithm to run.
+ */
 void run_algorithm(const ml::DataSet& dataset, IAlgorithm* algorithm)
 {
 	constexpr std::size_t NUM_FOLDS = 10;
