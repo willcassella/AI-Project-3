@@ -81,15 +81,15 @@ namespace ml
 			{ "1", "2", "3", "4", "5", "6", "7" },
 			{
 				Attribute{},
-				Attribute::discretize("refractive index", 1.5112f, 1.5339f, 5),
-				Attribute::discretize("sodium", 10.73f, 17.38f, 5),
-				Attribute::discretize("magnesium", 0, 4.49f, 5),
-				Attribute::discretize("aluminum", 0.29f, 3.5f, 5),
-				Attribute::discretize("silicon", 69.81f, 75.41f, 5),
-				Attribute::discretize("potassium", 0, 6.21f, 5),
-				Attribute::discretize("calcium", 5.43f, 16.19f, 5),
-				Attribute::discretize("barium", 0, 3.15f, 5),
-				Attribute::discretize("iron", 0, 0.51f, 5)
+				Attribute::discretize("refractive index", 1.5112f, 1.5339f, 10),
+				Attribute::discretize("sodium", 10.73f, 17.38f, 10),
+				Attribute::discretize("magnesium", 0, 4.49f, 10),
+				Attribute::discretize("aluminum", 0.29f, 3.5f, 10),
+				Attribute::discretize("silicon", 69.81f, 75.41f, 10),
+				Attribute::discretize("potassium", 0, 6.21f, 10),
+				Attribute::discretize("calcium", 5.43f, 16.19f, 10),
+				Attribute::discretize("barium", 0, 3.15f, 10),
+				Attribute::discretize("iron", 0, 0.51f, 10)
 			}
 		};
 
