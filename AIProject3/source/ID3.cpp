@@ -215,7 +215,7 @@ namespace ml
 			// Recurse by splittin on the best attribute
 			node.children.reserve(attribSize);
 
-			for (auto childSubset : split_subset(subset, attrib, attribSize))
+			for (auto& childSubset : split_subset(subset, attrib, attribSize))
 			{
 				// Create a child node
 				auto child = std::make_unique<Node>();
