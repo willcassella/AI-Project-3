@@ -28,11 +28,11 @@ Run 1:
     Classified ', 4.660000, 2.960000, 1.000000, 0.100000' as 'Iris-setosa', actual class: 'Iris-setosa'
     Classified ', 6.460000, 2.960000, 5.720000, 2.020000' as 'Iris-virginica', actual class: 'Iris-virginica'
     Classified ', 4.660000, 3.200000, 1.000000, 0.100000' as 'Iris-setosa', actual class: 'Iris-setosa'
-    Classified ', 6.460000, 3.200000, 4.540000, 1.780000' as 'Iris-versicolor', actual class: 'Iris-virginica'
+    Classified ', 6.460000, 3.200000, 4.540000, 1.780000' as 'Iris-virginica', actual class: 'Iris-virginica'
     Classified ', 5.380000, 2.480000, 3.950000, 1.060000' as 'Iris-versicolor', actual class: 'Iris-versicolor'
     Classified ', 6.820000, 3.200000, 5.130000, 2.260000' as 'Iris-virginica', actual class: 'Iris-virginica'
     Classified ', 6.100000, 3.200000, 5.130000, 2.260000' as 'Iris-virginica', actual class: 'Iris-virginica'
-Accuracy: 93.3333%
+Accuracy: 100%
 Run 2:
     Classified ', 7.540000, 2.960000, 5.720000, 2.260000' as 'Iris-virginica', actual class: 'Iris-virginica'
     Classified ', 6.820000, 2.960000, 4.540000, 1.300000' as 'Iris-versicolor', actual class: 'Iris-versicolor'
@@ -63,10 +63,10 @@ Run 3:
     Classified ', 4.300000, 2.240000, 1.000000, 0.100000' as 'Iris-setosa', actual class: 'Iris-setosa'
     Classified ', 5.740000, 2.960000, 4.540000, 1.300000' as 'Iris-versicolor', actual class: 'Iris-versicolor'
     Classified ', 7.180000, 3.440000, 5.720000, 2.260000' as 'Iris-virginica', actual class: 'Iris-virginica'
-    Classified ', 6.460000, 2.960000, 4.540000, 1.540000' as 'Iris-versicolor', actual class: 'Iris-versicolor'
+    Classified ', 6.460000, 2.960000, 4.540000, 1.540000' as 'Iris-virginica', actual class: 'Iris-versicolor'
     Classified ', 5.740000, 3.200000, 3.950000, 1.540000' as 'Iris-versicolor', actual class: 'Iris-versicolor'
     Classified ', 7.540000, 2.720000, 6.310000, 1.780000' as 'Iris-virginica', actual class: 'Iris-virginica'
-Accuracy: 93.3333%
+Accuracy: 86.6667%
 Run 4:
     Classified ', 5.740000, 2.720000, 4.540000, 2.260000' as 'Iris-virginica', actual class: 'Iris-virginica'
     Classified ', 5.740000, 2.480000, 5.130000, 1.300000' as 'Iris-versicolor', actual class: 'Iris-virginica'
@@ -86,7 +86,7 @@ Run 4:
 Accuracy: 80%
 Run 5:
     Classified ', 6.820000, 2.960000, 4.540000, 2.260000' as 'Iris-virginica', actual class: 'Iris-virginica'
-    Classified ', 5.740000, 2.960000, 4.540000, 1.780000' as 'Iris-versicolor', actual class: 'Iris-virginica'
+    Classified ', 5.740000, 2.960000, 4.540000, 1.780000' as 'Iris-virginica', actual class: 'Iris-virginica'
     Classified ', 5.380000, 2.240000, 3.360000, 0.820000' as 'Iris-versicolor', actual class: 'Iris-versicolor'
     Classified ', 5.380000, 2.720000, 3.950000, 1.060000' as 'Iris-versicolor', actual class: 'Iris-versicolor'
     Classified ', 5.380000, 2.720000, 3.360000, 1.060000' as 'Iris-versicolor', actual class: 'Iris-versicolor'
@@ -96,11 +96,11 @@ Run 5:
     Classified ', 6.100000, 3.200000, 5.130000, 2.260000' as 'Iris-virginica', actual class: 'Iris-virginica'
     Classified ', 4.660000, 2.960000, 1.000000, 0.100000' as 'Iris-setosa', actual class: 'Iris-setosa'
     Classified ', 5.020000, 2.480000, 3.360000, 1.300000' as 'Iris-versicolor', actual class: 'Iris-versicolor'
-    Classified ', 5.740000, 2.960000, 4.540000, 1.780000' as 'Iris-versicolor', actual class: 'Iris-virginica'
+    Classified ', 5.740000, 2.960000, 4.540000, 1.780000' as 'Iris-virginica', actual class: 'Iris-virginica'
     Classified ', 5.020000, 3.680000, 1.590000, 0.340000' as 'Iris-setosa', actual class: 'Iris-setosa'
     Classified ', 6.460000, 2.960000, 5.130000, 2.260000' as 'Iris-virginica', actual class: 'Iris-virginica'
     Classified ', 5.380000, 2.480000, 3.360000, 0.820000' as 'Iris-versicolor', actual class: 'Iris-versicolor'
-Accuracy: 86.6667%
+Accuracy: 100%
 Run 6:
     Classified ', 5.020000, 3.680000, 1.000000, 0.100000' as 'Iris-setosa', actual class: 'Iris-setosa'
     Classified ', 4.660000, 2.000000, 3.360000, 0.820000' as 'Iris-versicolor', actual class: 'Iris-versicolor'
@@ -156,7 +156,7 @@ Run 9:
     Classified ', 6.460000, 2.960000, 5.130000, 2.020000' as 'Iris-virginica', actual class: 'Iris-virginica'
     Classified ', 4.660000, 3.200000, 1.590000, 0.100000' as 'Iris-setosa', actual class: 'Iris-setosa'
     Classified ', 6.820000, 2.960000, 5.130000, 2.020000' as 'Iris-virginica', actual class: 'Iris-virginica'
-    Classified ', 5.740000, 2.960000, 4.540000, 1.780000' as 'Iris-versicolor', actual class: 'Iris-virginica'
+    Classified ', 5.740000, 2.960000, 4.540000, 1.780000' as 'Iris-virginica', actual class: 'Iris-virginica'
     Classified ', 5.380000, 2.480000, 3.360000, 1.060000' as 'Iris-versicolor', actual class: 'Iris-versicolor'
     Classified ', 5.020000, 3.680000, 1.000000, 0.100000' as 'Iris-setosa', actual class: 'Iris-setosa'
     Classified ', 4.300000, 2.960000, 1.000000, 0.100000' as 'Iris-setosa', actual class: 'Iris-setosa'
@@ -168,8 +168,8 @@ Run 9:
     Classified ', 4.660000, 3.440000, 1.000000, 0.100000' as 'Iris-setosa', actual class: 'Iris-setosa'
     Classified ', 5.380000, 2.240000, 3.950000, 1.060000' as 'Iris-versicolor', actual class: 'Iris-versicolor'
     Classified ', 6.460000, 2.960000, 5.130000, 1.780000' as 'Iris-virginica', actual class: 'Iris-virginica'
-Accuracy: 86.6667%
-Average accuracy: 92.6667%
+Accuracy: 93.3333%
+Average accuracy: 94.6667%
 
 ID3:
 Run 0:

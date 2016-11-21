@@ -10,8 +10,8 @@ Run 0:
     Classified ', y, y, y, n, n, n, y, y, n, y, n, n, n, n, n, y' as 'democrat', actual class: 'democrat'
     Classified ', n, y, n, y, y, y, n, n, n, y, n, y, y, y, n, n' as 'republican', actual class: 'republican'
     Classified ', n, y, n, y, y, y, n, n, n, n, n, n, n, y, y, y' as 'republican', actual class: 'democrat'
-    Classified ', y, y, y, y, n, n, y, y, y, y, y, n, n, y, n, y' as 'democrat', actual class: 'republican'
-    Classified ', n, y, y, y, y, y, n, n, n, n, n, y, y, y, n, n' as 'democrat', actual class: 'democrat'
+    Classified ', y, y, y, y, n, n, y, y, y, y, y, n, n, y, n, y' as 'republican', actual class: 'republican'
+    Classified ', n, y, y, y, y, y, n, n, n, n, n, y, y, y, n, n' as 'republican', actual class: 'democrat'
     Classified ', n, n, n, n, n, y, y, y, y, n, y, n, n, y, y, y' as 'democrat', actual class: 'democrat'
     Classified ', n, n, y, n, n, n, y, y, y, n, n, n, n, n, y, y' as 'democrat', actual class: 'democrat'
     Classified ', n, y, n, y, y, y, n, n, n, y, n, y, y, y, n, n' as 'republican', actual class: 'republican'
@@ -72,7 +72,7 @@ Run 1:
     Classified ', y, y, n, y, y, y, n, n, n, n, y, y, y, y, n, n' as 'republican', actual class: 'republican'
     Classified ', y, n, y, n, n, n, y, y, y, y, n, n, n, n, n, y' as 'democrat', actual class: 'democrat'
     Classified ', n, n, n, y, y, y, n, n, n, y, n, y, n, y, n, y' as 'republican', actual class: 'republican'
-    Classified ', n, n, n, y, n, n, y, y, y, y, n, n, y, y, n, y' as 'democrat', actual class: 'republican'
+    Classified ', n, n, n, y, n, n, y, y, y, y, n, n, y, y, n, y' as 'republican', actual class: 'republican'
     Classified ', n, y, n, y, y, y, n, n, n, n, y, y, y, y, n, n' as 'republican', actual class: 'republican'
     Classified ', y, y, y, n, n, n, y, y, y, n, n, n, n, n, y, n' as 'democrat', actual class: 'democrat'
     Classified ', y, y, y, y, y, y, n, n, y, n, y, y, y, y, n, n' as 'democrat', actual class: 'democrat'
@@ -88,7 +88,7 @@ Run 1:
     Classified ', y, n, y, n, n, n, y, y, y, n, n, n, n, n, y, y' as 'democrat', actual class: 'democrat'
     Classified ', y, n, y, n, n, y, y, y, y, y, y, n, n, y, y, y' as 'democrat', actual class: 'democrat'
     Classified ', n, y, n, n, y, y, n, n, n, y, y, n, y, y, n, n' as 'democrat', actual class: 'democrat'
-Accuracy: 95.3488%
+Accuracy: 97.6744%
 Run 2:
     Classified ', y, n, y, n, n, n, y, y, y, n, n, n, n, n, y, y' as 'democrat', actual class: 'democrat'
     Classified ', y, n, y, n, n, n, y, y, y, y, n, n, n, n, y, n' as 'democrat', actual class: 'democrat'
@@ -103,7 +103,7 @@ Run 2:
     Classified ', n, y, y, n, y, y, n, n, n, n, y, n, n, n, y, y' as 'democrat', actual class: 'democrat'
     Classified ', y, n, y, n, n, n, y, y, y, y, y, n, n, y, n, y' as 'democrat', actual class: 'democrat'
     Classified ', y, y, y, n, n, y, y, y, y, y, y, y, y, n, n, y' as 'democrat', actual class: 'democrat'
-    Classified ', n, y, n, y, y, n, n, n, n, n, y, y, y, y, n, n' as 'democrat', actual class: 'republican'
+    Classified ', n, y, n, y, y, n, n, n, n, n, y, y, y, y, n, n' as 'republican', actual class: 'republican'
     Classified ', n, y, n, y, y, y, n, n, n, y, n, y, y, y, n, n' as 'republican', actual class: 'republican'
     Classified ', y, n, y, n, n, n, y, y, y, n, n, n, n, n, y, n' as 'democrat', actual class: 'democrat'
     Classified ', y, y, y, n, y, y, n, n, n, n, y, n, y, y, n, y' as 'democrat', actual class: 'democrat'
@@ -133,10 +133,10 @@ Run 2:
     Classified ', y, n, y, y, y, y, y, y, n, y, y, y, n, y, y, y' as 'republican', actual class: 'republican'
     Classified ', n, y, n, y, y, y, n, n, n, y, n, y, y, y, n, y' as 'republican', actual class: 'republican'
     Classified ', n, y, n, y, y, y, n, n, n, y, n, y, y, y, n, y' as 'republican', actual class: 'republican'
-Accuracy: 93.0233%
+Accuracy: 95.3488%
 Run 3:
     Classified ', y, n, y, n, n, y, y, y, y, y, n, n, y, n, n, y' as 'democrat', actual class: 'democrat'
-    Classified ', y, y, n, y, y, y, n, n, n, n, y, n, y, y, n, y' as 'democrat', actual class: 'republican'
+    Classified ', y, y, n, y, y, y, n, n, n, n, y, n, y, y, n, y' as 'republican', actual class: 'republican'
     Classified ', y, n, y, n, n, n, y, y, y, n, y, n, n, n, y, y' as 'democrat', actual class: 'democrat'
     Classified ', n, y, y, n, n, y, y, y, y, y, y, n, y, n, y, n' as 'democrat', actual class: 'democrat'
     Classified ', y, n, y, n, n, y, y, y, n, n, n, y, y, n, n, y' as 'democrat', actual class: 'democrat'
@@ -178,12 +178,12 @@ Run 3:
     Classified ', n, n, n, y, y, y, n, n, n, y, y, y, n, y, n, y' as 'republican', actual class: 'republican'
     Classified ', y, y, y, n, y, y, n, y, n, n, y, n, y, n, y, y' as 'democrat', actual class: 'democrat'
     Classified ', y, y, y, n, n, n, y, y, y, n, n, n, y, n, y, y' as 'democrat', actual class: 'democrat'
-Accuracy: 90.6977%
+Accuracy: 93.0233%
 Run 4:
     Classified ', y, y, n, y, y, y, y, n, n, n, n, y, y, y, n, y' as 'republican', actual class: 'republican'
     Classified ', y, n, y, n, n, n, y, y, n, n, y, n, n, n, y, y' as 'democrat', actual class: 'democrat'
     Classified ', y, y, y, n, n, n, y, y, n, n, y, n, n, n, y, y' as 'democrat', actual class: 'democrat'
-    Classified ', n, n, n, y, y, y, y, n, n, y, n, n, n, y, y, y' as 'democrat', actual class: 'republican'
+    Classified ', n, n, n, y, y, y, y, n, n, y, n, n, n, y, y, y' as 'republican', actual class: 'republican'
     Classified ', n, y, n, y, y, y, n, n, n, y, n, y, y, y, n, y' as 'republican', actual class: 'republican'
     Classified ', y, n, n, n, n, n, y, y, y, y, n, n, n, y, n, y' as 'democrat', actual class: 'republican'
     Classified ', y, y, n, y, y, y, n, n, n, y, n, y, y, y, n, y' as 'republican', actual class: 'republican'
@@ -200,17 +200,17 @@ Run 4:
     Classified ', y, n, n, y, y, n, y, y, y, n, n, y, y, y, n, y' as 'republican', actual class: 'republican'
     Classified ', y, y, y, n, y, y, n, n, n, y, y, n, y, y, n, y' as 'democrat', actual class: 'democrat'
     Classified ', n, n, n, y, y, y, n, n, n, y, n, y, y, y, n, y' as 'republican', actual class: 'republican'
-    Classified ', n, n, y, y, y, y, n, n, n, y, n, y, y, y, y, y' as 'democrat', actual class: 'republican'
+    Classified ', n, n, y, y, y, y, n, n, n, y, n, y, y, y, y, y' as 'republican', actual class: 'republican'
     Classified ', n, n, y, n, n, n, y, y, y, y, y, n, n, n, y, y' as 'democrat', actual class: 'democrat'
     Classified ', y, y, y, n, n, n, y, y, y, n, n, n, n, n, y, y' as 'democrat', actual class: 'democrat'
-    Classified ', n, y, y, y, y, y, y, y, y, n, n, y, y, y, n, y' as 'democrat', actual class: 'republican'
+    Classified ', n, y, y, y, y, y, y, y, y, n, n, y, y, y, n, y' as 'republican', actual class: 'republican'
     Classified ', n, y, y, n, n, n, y, y, y, y, n, n, n, n, y, y' as 'democrat', actual class: 'democrat'
     Classified ', n, y, y, y, y, y, n, n, n, y, y, y, y, y, y, n' as 'democrat', actual class: 'democrat'
     Classified ', n, n, n, y, y, y, n, n, n, y, n, y, y, y, n, n' as 'republican', actual class: 'republican'
     Classified ', n, y, n, y, y, y, n, n, n, n, n, y, y, y, n, y' as 'republican', actual class: 'republican'
     Classified ', n, y, n, y, y, y, n, n, y, y, n, y, y, y, n, y' as 'republican', actual class: 'republican'
     Classified ', n, y, n, y, y, y, n, n, n, y, n, y, y, y, n, n' as 'republican', actual class: 'republican'
-    Classified ', n, y, y, y, y, y, n, n, n, y, y, n, y, y, n, n' as 'democrat', actual class: 'democrat'
+    Classified ', n, y, y, y, y, y, n, n, n, y, y, n, y, y, n, n' as 'republican', actual class: 'democrat'
     Classified ', n, n, n, y, y, y, y, n, n, y, n, y, n, y, y, y' as 'republican', actual class: 'republican'
     Classified ', n, y, n, y, y, y, n, n, n, y, n, y, y, y, n, n' as 'republican', actual class: 'republican'
     Classified ', y, n, y, n, y, y, n, n, y, y, n, n, y, y, n, y' as 'democrat', actual class: 'democrat'
@@ -223,7 +223,7 @@ Run 4:
     Classified ', y, y, y, n, n, n, y, y, y, n, y, n, n, n, y, n' as 'democrat', actual class: 'democrat'
     Classified ', y, n, y, n, n, y, y, y, y, y, n, y, n, y, n, y' as 'democrat', actual class: 'democrat'
     Classified ', y, n, n, n, n, y, n, y, y, n, n, y, y, n, n, y' as 'democrat', actual class: 'republican'
-Accuracy: 88.3721%
+Accuracy: 93.0233%
 Run 5:
     Classified ', n, y, n, y, y, y, n, n, n, n, n, y, y, y, n, y' as 'republican', actual class: 'republican'
     Classified ', y, y, y, n, n, y, y, y, y, y, n, n, n, n, y, y' as 'democrat', actual class: 'democrat'
@@ -255,7 +255,7 @@ Run 5:
     Classified ', y, n, y, n, n, n, y, y, y, n, n, n, n, n, n, y' as 'democrat', actual class: 'democrat'
     Classified ', y, n, y, n, n, n, y, y, y, n, n, n, n, n, y, y' as 'democrat', actual class: 'democrat'
     Classified ', y, n, y, n, n, y, n, y, y, y, n, n, y, y, n, y' as 'democrat', actual class: 'democrat'
-    Classified ', n, n, y, y, y, y, n, n, y, n, n, n, y, y, y, y' as 'democrat', actual class: 'democrat'
+    Classified ', n, n, y, y, y, y, n, n, y, n, n, n, y, y, y, y' as 'republican', actual class: 'democrat'
     Classified ', n, n, n, y, y, n, n, n, n, n, n, y, n, y, n, n' as 'republican', actual class: 'republican'
     Classified ', y, y, y, n, n, n, y, y, y, n, y, n, n, n, y, y' as 'democrat', actual class: 'democrat'
     Classified ', n, y, n, y, y, y, n, n, n, y, n, y, y, y, n, n' as 'republican', actual class: 'republican'
@@ -268,7 +268,7 @@ Run 5:
     Classified ', y, y, n, y, n, n, y, y, y, n, y, n, n, y, n, y' as 'republican', actual class: 'democrat'
     Classified ', y, n, y, n, n, n, y, y, y, y, n, y, n, n, y, y' as 'democrat', actual class: 'democrat'
     Classified ', n, n, n, y, y, y, n, n, n, y, n, y, y, y, n, y' as 'republican', actual class: 'republican'
-Accuracy: 95.3488%
+Accuracy: 93.0233%
 Run 6:
     Classified ', y, y, y, n, y, y, n, n, n, n, y, n, y, y, y, y' as 'democrat', actual class: 'democrat'
     Classified ', y, n, y, n, n, n, n, y, y, y, n, n, n, n, y, n' as 'democrat', actual class: 'democrat'
@@ -297,12 +297,12 @@ Run 6:
     Classified ', n, n, y, n, n, n, y, y, y, n, n, n, n, y, y, y' as 'democrat', actual class: 'democrat'
     Classified ', y, y, y, n, n, n, y, y, y, n, n, n, n, n, y, y' as 'democrat', actual class: 'democrat'
     Classified ', n, n, n, n, y, y, n, n, n, n, y, y, y, y, n, y' as 'democrat', actual class: 'democrat'
-    Classified ', n, y, y, y, y, y, n, y, y, y, y, y, y, y, n, y' as 'democrat', actual class: 'democrat'
+    Classified ', n, y, y, y, y, y, n, y, y, y, y, y, y, y, n, y' as 'republican', actual class: 'democrat'
     Classified ', y, n, y, n, n, n, y, y, y, y, n, n, n, n, y, y' as 'democrat', actual class: 'democrat'
     Classified ', y, y, y, n, n, n, y, y, y, n, n, n, n, n, y, y' as 'democrat', actual class: 'democrat'
     Classified ', y, n, y, n, n, n, y, y, y, y, y, n, y, n, y, y' as 'democrat', actual class: 'democrat'
-    Classified ', n, y, n, y, y, y, n, n, n, n, y, y, n, y, n, n' as 'democrat', actual class: 'republican'
-    Classified ', y, y, n, y, y, y, n, n, n, y, y, n, y, n, n, n' as 'democrat', actual class: 'republican'
+    Classified ', n, y, n, y, y, y, n, n, n, n, y, y, n, y, n, n' as 'republican', actual class: 'republican'
+    Classified ', y, y, n, y, y, y, n, n, n, y, y, n, y, n, n, n' as 'republican', actual class: 'republican'
     Classified ', n, y, n, y, y, y, y, n, n, n, n, n, y, y, n, n' as 'republican', actual class: 'republican'
     Classified ', n, y, n, y, y, y, y, n, n, n, y, y, y, y, n, y' as 'republican', actual class: 'republican'
     Classified ', y, y, y, n, y, y, n, y, y, n, y, n, n, y, n, n' as 'democrat', actual class: 'democrat'
@@ -313,13 +313,13 @@ Run 6:
     Classified ', y, y, y, n, y, n, y, y, y, y, n, n, n, n, y, n' as 'democrat', actual class: 'democrat'
     Classified ', n, y, n, y, y, y, n, n, n, y, n, y, y, y, n, n' as 'republican', actual class: 'republican'
     Classified ', n, y, n, n, y, y, n, n, n, n, n, y, y, y, y, y' as 'democrat', actual class: 'democrat'
-Accuracy: 95.3488%
+Accuracy: 97.6744%
 Run 7:
     Classified ', n, n, n, y, y, y, n, n, n, y, n, y, n, y, n, y' as 'republican', actual class: 'republican'
     Classified ', n, y, y, n, y, y, y, y, n, n, y, n, y, n, y, y' as 'democrat', actual class: 'democrat'
     Classified ', y, n, n, y, y, y, n, n, n, n, y, y, y, y, n, n' as 'republican', actual class: 'republican'
     Classified ', y, n, y, n, n, n, y, y, y, y, n, n, n, n, n, y' as 'democrat', actual class: 'democrat'
-    Classified ', n, n, y, y, y, y, y, n, n, n, n, y, y, y, n, y' as 'democrat', actual class: 'republican'
+    Classified ', n, n, y, y, y, y, y, n, n, n, n, y, y, y, n, y' as 'republican', actual class: 'republican'
     Classified ', n, n, y, n, n, n, y, y, y, y, n, n, y, n, y, y' as 'democrat', actual class: 'democrat'
     Classified ', n, n, n, y, y, y, n, n, n, y, n, y, y, y, n, n' as 'republican', actual class: 'republican'
     Classified ', n, y, n, y, y, y, n, n, n, y, n, y, y, y, n, n' as 'republican', actual class: 'republican'
@@ -333,7 +333,7 @@ Run 7:
     Classified ', y, n, y, n, n, n, y, y, y, y, n, n, n, n, y, y' as 'democrat', actual class: 'democrat'
     Classified ', n, n, n, y, y, y, n, n, n, y, n, y, n, y, n, y' as 'republican', actual class: 'republican'
     Classified ', n, y, n, n, y, n, y, y, y, n, n, n, n, y, y, n' as 'democrat', actual class: 'democrat'
-    Classified ', y, y, n, y, y, y, n, n, n, y, n, n, y, y, n, y' as 'democrat', actual class: 'republican'
+    Classified ', y, y, n, y, y, y, n, n, n, y, n, n, y, y, n, y' as 'republican', actual class: 'republican'
     Classified ', y, y, y, n, n, n, y, y, y, n, n, n, n, n, n, y' as 'democrat', actual class: 'democrat'
     Classified ', n, y, y, n, y, y, n, n, n, n, n, n, y, y, y, y' as 'democrat', actual class: 'democrat'
     Classified ', n, y, n, y, n, y, y, y, y, n, y, n, y, n, y, y' as 'democrat', actual class: 'democrat'
@@ -343,10 +343,10 @@ Run 7:
     Classified ', n, n, y, n, n, n, y, y, y, y, n, n, n, y, n, y' as 'democrat', actual class: 'democrat'
     Classified ', n, n, y, n, n, y, y, y, y, y, n, n, y, n, n, y' as 'democrat', actual class: 'democrat'
     Classified ', y, y, y, n, y, y, n, y, n, y, y, n, y, y, y, y' as 'democrat', actual class: 'democrat'
-    Classified ', y, n, y, y, y, n, y, n, y, y, n, n, y, y, n, y' as 'democrat', actual class: 'republican'
+    Classified ', y, n, y, y, y, n, y, n, y, y, n, n, y, y, n, y' as 'republican', actual class: 'republican'
     Classified ', n, n, n, y, y, y, n, n, n, n, n, y, y, y, n, n' as 'republican', actual class: 'republican'
     Classified ', y, y, y, y, y, y, y, y, n, y, n, y, n, y, n, y' as 'republican', actual class: 'republican'
-    Classified ', y, n, n, y, y, n, y, n, n, y, n, n, n, y, y, y' as 'democrat', actual class: 'republican'
+    Classified ', y, n, n, y, y, n, y, n, n, y, n, n, n, y, y, y' as 'republican', actual class: 'republican'
     Classified ', y, n, y, n, n, y, y, y, y, n, n, y, y, y, y, y' as 'democrat', actual class: 'democrat'
     Classified ', n, y, n, y, y, y, n, n, n, n, n, y, y, y, n, n' as 'republican', actual class: 'republican'
     Classified ', n, n, n, y, y, y, n, n, n, n, n, y, y, y, n, y' as 'republican', actual class: 'republican'
@@ -358,11 +358,11 @@ Run 7:
     Classified ', y, n, y, n, n, y, y, y, y, n, n, n, n, n, y, y' as 'democrat', actual class: 'democrat'
     Classified ', n, n, n, y, y, y, n, n, n, n, n, y, y, y, n, y' as 'republican', actual class: 'republican'
     Classified ', n, y, n, y, y, y, n, n, n, n, n, n, y, y, n, y' as 'republican', actual class: 'republican'
-Accuracy: 90.6977%
+Accuracy: 100%
 Run 8:
     Classified ', n, y, y, n, n, y, n, y, y, y, n, n, y, y, n, y' as 'democrat', actual class: 'democrat'
     Classified ', n, n, n, y, y, y, n, n, n, y, y, y, y, y, n, y' as 'republican', actual class: 'republican'
-    Classified ', n, n, n, y, y, y, n, n, n, y, y, y, y, y, n, n' as 'democrat', actual class: 'republican'
+    Classified ', n, n, n, y, y, y, n, n, n, y, y, y, y, y, n, n' as 'republican', actual class: 'republican'
     Classified ', n, n, y, y, y, y, y, y, n, y, n, n, n, y, n, y' as 'republican', actual class: 'republican'
     Classified ', y, y, y, y, y, y, y, y, n, y, n, n, y, y, n, y' as 'republican', actual class: 'republican'
     Classified ', y, y, n, y, y, y, n, n, n, y, n, y, y, y, n, y' as 'republican', actual class: 'republican'
@@ -387,13 +387,13 @@ Run 8:
     Classified ', y, y, y, n, n, n, y, y, y, n, y, n, n, n, y, y' as 'democrat', actual class: 'democrat'
     Classified ', y, n, y, n, n, n, y, y, y, y, y, n, n, n, y, y' as 'democrat', actual class: 'democrat'
     Classified ', n, n, n, y, y, y, n, n, n, y, n, y, y, y, n, n' as 'republican', actual class: 'republican'
-    Classified ', n, n, y, y, y, y, y, y, y, y, n, y, y, y, y, y' as 'democrat', actual class: 'republican'
+    Classified ', n, n, y, y, y, y, y, y, y, y, n, y, y, y, y, y' as 'republican', actual class: 'republican'
     Classified ', y, y, y, n, n, n, y, y, n, n, n, n, n, y, n, y' as 'democrat', actual class: 'democrat'
     Classified ', n, y, n, y, y, y, n, n, n, y, n, y, y, y, n, y' as 'republican', actual class: 'republican'
     Classified ', n, n, y, n, n, y, y, n, y, y, y, n, n, n, y, y' as 'democrat', actual class: 'democrat'
     Classified ', y, y, y, n, n, n, y, y, y, n, n, n, n, n, y, y' as 'democrat', actual class: 'democrat'
     Classified ', y, n, y, n, n, n, y, y, y, n, n, n, y, n, y, y' as 'democrat', actual class: 'democrat'
-    Classified ', n, y, y, y, y, y, n, n, n, y, n, y, y, y, n, y' as 'democrat', actual class: 'republican'
+    Classified ', n, y, y, y, y, y, n, n, n, y, n, y, y, y, n, y' as 'republican', actual class: 'republican'
     Classified ', n, y, n, y, y, y, n, n, n, y, n, y, y, y, n, n' as 'republican', actual class: 'republican'
     Classified ', y, n, n, n, n, y, y, y, y, y, n, n, n, y, y, y' as 'democrat', actual class: 'democrat'
     Classified ', n, y, n, n, n, y, n, n, n, n, y, y, n, y, n, n' as 'democrat', actual class: 'democrat'
@@ -403,7 +403,7 @@ Run 8:
     Classified ', y, y, n, y, y, y, n, y, n, n, n, y, y, y, n, y' as 'republican', actual class: 'republican'
     Classified ', n, y, n, y, y, y, n, n, n, n, n, y, y, y, n, n' as 'republican', actual class: 'republican'
     Classified ', y, n, y, n, n, n, y, y, y, y, y, n, n, n, y, y' as 'democrat', actual class: 'democrat'
-Accuracy: 93.0233%
+Accuracy: 100%
 Run 9:
     Classified ', y, n, n, y, y, y, n, n, n, y, n, y, y, y, n, n' as 'republican', actual class: 'republican'
     Classified ', n, n, y, n, y, y, y, y, y, y, n, n, n, n, y, y' as 'democrat', actual class: 'democrat'
@@ -437,7 +437,7 @@ Run 9:
     Classified ', n, y, n, y, y, y, n, n, n, y, n, y, y, y, n, y' as 'republican', actual class: 'republican'
     Classified ', n, y, y, n, y, y, y, n, n, n, y, y, y, y, n, y' as 'democrat', actual class: 'democrat'
     Classified ', n, n, n, y, y, y, n, n, n, n, n, y, y, y, n, n' as 'republican', actual class: 'republican'
-    Classified ', y, y, y, y, y, n, y, n, n, n, n, y, y, y, n, y' as 'democrat', actual class: 'republican'
+    Classified ', y, y, y, y, y, n, y, n, n, n, n, y, y, y, n, y' as 'republican', actual class: 'republican'
     Classified ', n, n, y, y, n, n, y, y, y, y, n, n, n, y, y, y' as 'democrat', actual class: 'republican'
     Classified ', n, n, n, y, y, y, n, n, n, n, n, y, y, y, n, y' as 'republican', actual class: 'republican'
     Classified ', n, y, y, n, n, y, y, y, y, n, y, n, n, y, y, y' as 'democrat', actual class: 'democrat'
@@ -447,9 +447,9 @@ Run 9:
     Classified ', y, n, y, n, n, n, y, y, y, n, n, n, n, n, n, y' as 'democrat', actual class: 'democrat'
     Classified ', n, n, y, n, n, y, y, y, y, n, y, y, n, y, y, y' as 'democrat', actual class: 'democrat'
     Classified ', y, y, n, n, y, y, n, n, n, n, y, y, y, y, y, n' as 'democrat', actual class: 'democrat'
-    Classified ', n, y, y, y, y, y, y, n, y, y, n, y, y, y, n, y' as 'democrat', actual class: 'republican'
-Accuracy: 88.3721%
-Average accuracy: 92.3256%
+    Classified ', n, y, y, y, y, y, y, n, y, y, n, y, y, y, n, y' as 'republican', actual class: 'republican'
+Accuracy: 93.0233%
+Average accuracy: 95.5814%
 
 ID3:
 Run 0:
