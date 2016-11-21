@@ -261,6 +261,7 @@ namespace ml
 					if (iter.second > occurrences)
 					{
 						classIndex = iter.first;
+						occurrences = iter.second;
 					}
 				}
 
@@ -280,7 +281,7 @@ namespace ml
 			vdm.init(dataset, trainingSet);
 
 			// The value of K
-			constexpr unsigned int K_VALUE = 3;
+			constexpr unsigned int K_VALUE = 9;
 
 			std::size_t numCorrect = 0;
 
